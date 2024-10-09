@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Dots:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="/p5.js"></script>
+    <title>Website about Jade</title>
+</head>
+<body>
+    <div class="split left-split">
+        <marquee width="50%" direction="up" height="100%">
+            <h1>not nearly everything about Jade Jade Jade</h1>
+        </marquee>
+        <div class="public">
+            <p>my biggest inspo is: the day i saw my parents’ people that sparked the neverending interest in what people are</p>
+            <p>learning people</p> 
+            <p>very curious and thinking "you guys are fucked up too"</p> 
+            <p>im currently reading: NOTHING — and i wont anytime soon</p> 
+            <p>reading some chekhov short stories — short films — short form</p> 
+            <p>the longest film that ive made is a 14min, </p> 
+            <p>the current one will be: 19min and its called </p> 
+        </div>
+    </div>    
+    <div class="split right-split">
+        <div class="hints">
+            <p>working title right now: OPEN HOUSE</p>
+            <p>young couple goes to tour a house at real house</p> 
+            <p>house is empty</p> 
+            <p>real agent takes them around the house</p> 
+            <p>asks details</p> 
+            <p>envision their life in the house</p> 
+            <p>couple starts enacting their lives in the house</p> 
+            <p>set design changes in every room </p> 
+            <p>blueprint of the house — what could happen in each of those rooms?</p> 
+        </div>
+    </div>
+
+    <script>
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const hintsDiv = document.querySelector('.hints, .public');
+            const spans = Array.from(hintsDiv.querySelectorAll('p'));
+            shuffle(spans);
+            hintsDiv.innerHTML = '';
+            spans.forEach(span => hintsDiv.appendChild(span));
+        });
+
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+
+        // Disable key combinations for copying
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey || event.metaKey) && (event.key === 'c' || event.key === 'a')) {
+                event.preventDefault();
+            }
+        });
+
+        // Select all .more-tags a elements
+        const moreTagsLinks = document.querySelectorAll('.public p');
+
+        // Iterate over each element
+        moreTagsLinks.forEach(link => {
+            // Generate a random duration between 1s and 5s for the fade-in and fade-out animations
+            const randomDuration = Math.random() * (5 - 1) + 1;
+
+            // Apply the CSS animation to each element with the random duration
+            link.style.animation = `fadeInOut ${randomDuration}s ease-in-out infinite`;
+        });
+
+        // Define the fadeInOut animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeInOut {
+                0%, 100% {
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+</html>
+
